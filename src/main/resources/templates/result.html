@@ -1,16 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Getting Started: Serving Web Content</title>
+<title>Result</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+
 	<div th:if="${list != null}">
-		<h1>Pericles : Candidates list</h1>
+
+		<h1>Result</h1>
 		<ul>
-			<li th:each="item : ${list}" th:text="${item}">Item description
-				here...</li>
+			<li th:each="item : ${list}" th:text="${item}">Results list</li>
 		</ul>
 	</div>
+	<a href="/">Home Page</a>
 </body>
 </html>

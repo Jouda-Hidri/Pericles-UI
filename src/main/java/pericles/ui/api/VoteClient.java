@@ -12,23 +12,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pericles.coreservice.model.Candidate;
 
-
-@FeignClient(name="gateway-server")
-//@FeignClient(url = "http://localhost:8098")
-//@FeignClient(name="core-service")
-
-//@FeignClient(value = "candidates", path = "/candidates")
-@RibbonClient(name="core-service")
+@FeignClient(name = "gateway-server")
+@RibbonClient(name = "core-service")
 public interface VoteClient {
-	
-    @RequestMapping(value = "/core-service/listall", method = RequestMethod.GET)
-    public List<String> listAll();
 
-    
-    @RequestMapping(method = RequestMethod.GET, path = "/core-service/candidates")
-    Resources<Candidate> getCandidates();
-    
-    @RequestMapping(method = RequestMethod.GET, path = "/core-service/candidates/{id}")
-    Resource<Candidate> getCandidate(@PathVariable("id") long id);
+	@RequestMapping(method = RequestMethod.GET, path = "/core-service/candidates")
+	Resources<Candidate> getCandidates();
+
+	@RequestMapping(method = RequestMethod.GET, path = "/core-service/candidates/{id}")
+	Resource<Candidate> getCandidate(@PathVariable("id") long id);
+
+	@RequestMapping(value = "/core-service/vote/{voter}/for/{candidate}", method = RequestMethod.GET)
+	public void vote(@PathVariable("voter") long voterId, @PathVariable("candidate") long candidateId);
+	
+	@RequestMapping(value = "/core-service/result", method = RequestMethod.GET)
+	public List<String> getResult();
 
 }
