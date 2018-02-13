@@ -19,25 +19,24 @@ public class UIController {
 	@Autowired
 	VoteClient voteClient;
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String getCandidates(Model model) {
-		Resources<Candidate> list = voteClient.getCandidates();
-		model.addAttribute("list", list.getContent());
-		return "list";
+	@RequestMapping(value = "/list-candidates", method = RequestMethod.GET)
+	public String getListCandidates(Model model) {
+		Resources<Candidate> listCandidates = voteClient.getCandidates();
+		model.addAttribute("listCandidates", listCandidates.getContent());
+		return "list-candidates";
 	}
 	
 	@RequestMapping(value = "/vote/{candidate}", method = RequestMethod.GET)
 	public String vote(Model model, @PathVariable("candidate") long candidateId) {
-		model.addAttribute("id", candidateId);
-		voteClient.vote(1, candidateId);
+		long userId = 1; //TODO get online user
+		voteClient.vote(userId, candidateId);
 		return "vote";
 	}
 	
-	@RequestMapping(value = "/result", method = RequestMethod.GET)
-	public String getResults(Model model) {
+	@RequestMapping(value = "/list-results", method = RequestMethod.GET)
+	public String getListResults(Model model) {
 		List<String> listResults = voteClient.getResult();
-		model.addAttribute("list", listResults);
-		return "result";
+		model.addAttribute("listResults", listResults);
+		return "list-results";
 	}
-
 }

@@ -1,16 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Result</title>
+<title>Results list</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
-	<div th:if="${list != null}">
+	<div th:if="${listResults != null}">
 
-		<h1>Result</h1>
+		<h1>Results list</h1>
 		<ul>
-			<li th:each="item : ${list}" th:text="${item}">Results list</li>
+			<li th:each="result : ${listResults}" th:text="${result}">Results list</li>
 		</ul>
 	</div>
 	<a href="/">Home Page</a>

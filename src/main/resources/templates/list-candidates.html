@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Candidates List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<div th:if="${listCandidates != null}">
+		<h1>Candidates list</h1>
+		<p>Click on the candidate's name to vote</p>
+		<ul>
+			<li th:each="candidate : ${listCandidates}"><a
+				th:href="@{'/vote/' + ${candidate.id}}" th:utext="${candidate}">Click here</a></li>
+		</ul>
+	</div>
+</body>
+</html>
