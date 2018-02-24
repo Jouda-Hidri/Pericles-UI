@@ -1,4 +1,4 @@
-package pericles.ui.controller;
+package pericles.ui.web;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class UIController {
 	public String getListCandidates(Model model) {
 		Resources<Candidate> listCandidates = voteClient.getCandidates();
 		model.addAttribute("listCandidates", listCandidates.getContent());
-		return "list-candidates";
+		return "candidates";
 	}
 	
 	@RequestMapping(value = "/vote/{candidate}", method = RequestMethod.GET)
@@ -38,6 +38,6 @@ public class UIController {
 	public String getListResults(Model model) {
 		List<CandidateDto> listResults = voteClient.getResult();
 		model.addAttribute("listResults", listResults);
-		return "list-results";
+		return "results";
 	}
 }
