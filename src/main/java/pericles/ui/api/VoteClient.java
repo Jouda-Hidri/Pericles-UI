@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pericles.coreservice.model.Candidate;
+import pericles.coreservice.domain.Candidate;
+import pericles.coreservice.domain.dto.CandidateDto;
 
 @FeignClient(name = "gateway-server")
 @RibbonClient(name = "core-service")
@@ -26,6 +27,6 @@ public interface VoteClient {
 	public void vote(@PathVariable("voter") long voterId, @PathVariable("candidate") long candidateId);
 	
 	@RequestMapping(value = "/core-service/result", method = RequestMethod.GET)
-	public List<String> getResult();
+	public List<CandidateDto> getResult();
 
 }

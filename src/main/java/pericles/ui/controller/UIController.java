@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pericles.coreservice.model.Candidate;
+import pericles.coreservice.domain.Candidate;
+import pericles.coreservice.domain.dto.CandidateDto;
 import pericles.ui.api.VoteClient;
 
 
@@ -35,7 +36,7 @@ public class UIController {
 	
 	@RequestMapping(value = "/list-results", method = RequestMethod.GET)
 	public String getListResults(Model model) {
-		List<String> listResults = voteClient.getResult();
+		List<CandidateDto> listResults = voteClient.getResult();
 		model.addAttribute("listResults", listResults);
 		return "list-results";
 	}
