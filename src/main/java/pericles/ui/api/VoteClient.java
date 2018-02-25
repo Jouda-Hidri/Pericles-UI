@@ -17,16 +17,16 @@ import pericles.coreservice.domain.dto.CandidateDto;
 @RibbonClient(name = "core-service")
 public interface VoteClient {
 
-	@RequestMapping(method = RequestMethod.GET, path = "/core-service/candidates")
+	@RequestMapping(method = RequestMethod.GET, path = "/core-service/zone-1/candidates")
 	Resources<Candidate> getCandidates();
 
-	@RequestMapping(method = RequestMethod.GET, path = "/core-service/candidates/{id}")
+	@RequestMapping(method = RequestMethod.GET, path = "/core-service/zone-1/candidates/{id}")
 	Resource<Candidate> getCandidate(@PathVariable("id") long id);
 
-	@RequestMapping(value = "/core-service/vote/{voter}/for/{candidate}", method = RequestMethod.GET)
+	@RequestMapping(value = "/core-service/zone-1/vote/{voter}/for/{candidate}", method = RequestMethod.GET)
 	public void vote(@PathVariable("voter") long voterId, @PathVariable("candidate") long candidateId);
 	
-	@RequestMapping(value = "/core-service/result", method = RequestMethod.GET)
+	@RequestMapping(value = "/core-service/zone-1/result", method = RequestMethod.GET)
 	public List<CandidateDto> getResult();
 
 }
